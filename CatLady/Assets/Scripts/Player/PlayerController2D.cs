@@ -70,5 +70,15 @@ public class PlayerController2D : MonoBehaviour
 
 		// Add action logic here
 		Debug.Log("Action performed!");
+		// Play action animation
+		PlayActionAnimation();
+	}
+
+	private void PlayActionAnimation() {
+		// Play action animation if animator exists
+		if (animator != null) {
+			Debug.Log("Action animation triggered!");
+			animator.SetTrigger("Action");
+		}
 	}
 }
