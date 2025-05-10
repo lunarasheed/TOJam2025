@@ -8,3 +8,9 @@
 [Uu]serSettings/*
 [Bb]uild
 [Bb]uild/*
+.vs
+.vs/*
+.vscode
+.vscode/*
+
+
