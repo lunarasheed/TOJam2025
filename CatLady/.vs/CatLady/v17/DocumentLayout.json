@@ -1,12 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Source\\TOJam2025\\CatLady\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{B90AD9C4-01DB-E82C-42C2-4E6E7872388E}|Assembly-CSharp.csproj|c:\\source\\tojam2025\\catlady\\assets\\scripts\\player\\playercontroller2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B90AD9C4-01DB-E82C-42C2-4E6E7872388E}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playercontroller2d.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Ponyp\\OneDrive\\Documents\\GitHub\\TOJam2025\\CatLady\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,20 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PlayerController2D.cs",
-              "DocumentMoniker": "C:\\Source\\TOJam2025\\CatLady\\Assets\\Scripts\\Player\\PlayerController2D.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerController2D.cs",
-              "ToolTip": "C:\\Source\\TOJam2025\\CatLady\\Assets\\Scripts\\Player\\PlayerController2D.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerController2D.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAgwFQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T21:15:39.726Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
