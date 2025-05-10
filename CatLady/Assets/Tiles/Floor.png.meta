@@ -142,10 +142,10 @@ TextureImporter:
       name: Square
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 256
-        height: 256
+        x: 25
+        y: 26
+        width: 1150
+        height: 1150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
