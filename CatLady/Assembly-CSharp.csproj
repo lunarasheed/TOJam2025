@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Gameplay\PlayerSpawn.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController2D.cs" />
     <Compile Include="Assets\Scripts\Core\Simulation.InstanceRegister.cs" />
     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\Jiggler.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerEnteredVictoryZone.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Assets\Scripts\Mechanics\VictoryZone.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerEnemyCollision.cs" />
     <Compile Include="Assets\Scripts\Mechanics\Health.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Mechanics\KinematicObject.cs" />
     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\PlatformerJumpPad.cs" />
     <Compile Include="Assets\Scripts\Core\HeapQueue.cs" />
@@ -1197,6 +1199,10 @@
     </Reference>
     <Reference Include="Unity.2D.Aseprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.PlasticSCM.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Multiplayer.Center.Editor">
