@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] private CanvasGroup fadeCanvasGroup;
 
 	[SerializeField] private GameObject pickupPrefab;
-	[SerializeField] private CanvasGroup scoreCanvasGroup;
+	[SerializeField] private GameObject scoreCanvas;
 
 	private AudioSource audioSource;
 	private PlayerController2D playerInstance;
@@ -120,24 +120,40 @@ public class GameController : MonoBehaviour
 	private void UpdateScoreUI()
 	{
 		// If the ScoreUI object is not assigned, spawn a new CanvasGroup with a Text component
-		if (scoreCanvasGroup == null)
+		if (scoreCanvas == null)
 		{
-			GameObject scoreUI = new GameObject("ScoreUI");
-			scoreUI.transform.SetParent(transform);
-			scoreCanvasGroup = scoreUI.AddComponent<CanvasGroup>();
-			TextMeshPro scoreText = scoreUI.AddComponent<TextMeshPro>();
+			// Search for an existing Canvas in the scene
+			Canvas canvas = FindAnyObjectByType<Canvas>();
+			if (canvas == null)
+			{
+				Debug.LogError("No Canvas found in the scene!");
+				return;
+			}
+			scoreCanvas = canvas.GetComponentInParent<GameObject>();
+			if (scoreCanvas == null)
+			{
+				Debug.LogError("No GameObject found with a Canvas component!");
+				return;
+			}
+			GameObject textObj = new GameObject("ScoreText");
+			textObj.transform.SetParent(scoreCanvas.transform);
+			TextMeshPro scoreText = textObj.AddComponent<TextMeshPro>();
 			scoreText.fontSize = 24;
 			scoreText.color = Color.white;
 			scoreText.alignment = TextAlignmentOptions.Center;
 			scoreText.text = "Score: " + score;
+			scoreText.font = Resources.Load<TMP_FontAsset>("ZCOOLKuaiLe-Regular SDF");
+			scoreText.fontSharedMaterial = Resources.Load<Material>("ZCOOLKuaiLe-Regular SDF");
 			// move score canvas to the top left corner
-			RectTransform rectTransform = scoreUI.GetComponent<RectTransform>();
+			RectTransform rectTransform = scoreCanvas.GetComponent<RectTransform>();
 			rectTransform.position = new Vector3(10, Screen.height - 10, 0);
 		}
 	}
 
 	private void CheckPlayerSanity(float sanity)
 	{
+		UpdateScore();
+
 		if (sanity <= 0f && !isGameOver)
 		{
 			StartCoroutine(HandleGameOver());
