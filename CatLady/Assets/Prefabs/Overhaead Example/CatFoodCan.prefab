@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8390356369622650502}
-  floatingTextPrefab: {fileID: 8879885288625325156, guid: e8803759adb0c814abe069a407d77e51,
+  floatingTextPrefab: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
     type: 3}
   floatSpeed: 1
   fadeSpeed: 1
@@ -268,9 +268,9 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:

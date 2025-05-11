@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Pickup : MonoBehaviour
 {
@@ -34,29 +35,27 @@ public class Pickup : MonoBehaviour
 
 		// Create the floating text object
 		GameObject floatingTextObj = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
-		if (floatingTextObj == null)
+		while (floatingTextObj == null)
 		{
 			Debug.LogError("Failed to instantiate floating text prefab!");
 			return;
 		}
 
-		TextMeshPro textMesh = floatingTextObj.GetComponent<TextMeshPro>();
+		Canvas canvas = floatingTextObj.GetComponent<Canvas>();
 
-		if (textMesh == null)
-		{
-			Debug.LogError("TextMeshPro component not found on prefab!");
-			Destroy(floatingTextObj);
-			return;
-		}
+		// Set the canvas to world space
+		canvas.renderMode = RenderMode.WorldSpace;
+		canvas.sortingOrder = 10; // Set a higher sorting order to ensure it's on top
 
-		textMesh.text = "Sanity increased";
-		textMesh.color = new Color(1f, 1f, 1f, 1f); // Start fully opaque
+		// Set the canvas to the same size as the pickup
+		RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+		canvasRect.sizeDelta = new Vector2(1, 1); // Adjust size as needed
 
 		// Start coroutine to animate the text
-		StartCoroutine(AnimateFloatingText(floatingTextObj, textMesh));
+		StartCoroutine(AnimateFloatingText(floatingTextObj));
 	}
 
-	private System.Collections.IEnumerator AnimateFloatingText(GameObject textObj, TextMeshPro textMesh)
+	private System.Collections.IEnumerator AnimateFloatingText(GameObject textObj)
 	{
 		float alpha = 1f;
 		Vector3 startPos = textObj.transform.position;
@@ -72,8 +71,13 @@ public class Pickup : MonoBehaviour
 
 			// Fade out
 			alpha -= Time.deltaTime * fadeSpeed;
-			textMesh.color = new Color(1f, 1f, 1f, alpha);
+			CanvasRenderer canvasRenderer = textObj.GetComponentInChildren<CanvasRenderer>();
+			if (canvasRenderer != null)
+			{
+				canvasRenderer.SetAlpha(alpha);
+			}
 
+			// Wait for the next frame
 			yield return null;
 		}
 

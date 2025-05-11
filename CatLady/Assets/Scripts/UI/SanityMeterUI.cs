@@ -20,7 +20,7 @@ public class SanityMeterUI : MonoBehaviour
 	private void Start()
 	{
 		if (player == null)
-			player = FindObjectOfType<PlayerController2D>();
+			player = FindFirstObjectByType<PlayerController2D>();
 
 		if (player != null)
 		{
