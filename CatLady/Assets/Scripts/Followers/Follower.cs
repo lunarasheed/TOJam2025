@@ -16,12 +16,20 @@ public class Follower : MonoBehaviour
 	[Header("Visual Effects")]
 	[SerializeField] private GameObject meowParticlePrefab;
 
+	[Header("Animation Settings")]
+	[SerializeField] private float bounceHeight = 0.5f;
+	[SerializeField] private float bounceSpeed = 2f;
+	[SerializeField] private Transform visualsTransform; // Assign the child object with sprite/mesh
+
 	private Transform playerTransform;
 	private PlayerController2D playerController;
 	private bool isSated = false;
 	private float satedTimeRemaining = 0f;
 	private const float SATED_DURATION = 30f;
 	private float nextMeowTime = 0f;
+
+	private Vector3 startPosition;
+	private float bounceTime;
 
 	private void Start()
 	{
@@ -39,6 +47,15 @@ public class Follower : MonoBehaviour
 
 		// Listen for pickup events
 		InventoryManager.Instance.onItemPickedUp.AddListener(OnPlayerPickedUpItem);
+
+		if (visualsTransform != null)
+		{
+			startPosition = visualsTransform.localPosition;
+		}
+		else
+		{
+			Debug.LogError("Visuals Transform not assigned! Please assign the child object with the sprite.");
+		}
 	}
 
 	private void Update()
@@ -54,6 +71,9 @@ public class Follower : MonoBehaviour
 				isSated = false;
 			}
 		}
+
+		// Always animate bounce regardless of sated status
+		AnimateBounce();
 
 		// Only meow and follow if not sated
 		if (!isSated)
@@ -137,5 +157,14 @@ public class Follower : MonoBehaviour
 		{
 			InventoryManager.Instance.onItemPickedUp.RemoveListener(OnPlayerPickedUpItem);
 		}
+	}
+
+	private void AnimateBounce()
+	{
+		if (visualsTransform == null) return;
+
+		bounceTime += Time.deltaTime * bounceSpeed;
+		float yOffset = Mathf.Sin(bounceTime) * bounceHeight;
+		visualsTransform.localPosition = startPosition + new Vector3(0f, yOffset, 0f);
 	}
 }

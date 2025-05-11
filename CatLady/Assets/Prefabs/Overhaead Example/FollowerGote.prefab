@@ -48,11 +48,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   minDistanceToPlayer: 1
-  maxDistanceToPlayer: 5
+  maxDistanceToPlayer: 2
   meowInterval: 5
   sanityLossPerMeow: 15
   meowSound: {fileID: 2620310435980086094}
-  meowParticlePrefab: {fileID: 0}
+  meowParticlePrefab: {fileID: 8272577834234395644, guid: 0bb67d6b70ca4714e82968fd44f87059,
+    type: 3}
+  bounceHeight: 0.5
+  bounceSpeed: 2
+  visualsTransform: {fileID: 5448759605608681016}
 --- !u!82 &2620310435980086094
 AudioSource:
   m_ObjectHideFlags: 0
@@ -176,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 5772473721390272962}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02765355, y: -1.9504913, z: 0.0073011834}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
