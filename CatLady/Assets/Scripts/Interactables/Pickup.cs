@@ -34,6 +34,17 @@ public class Pickup : MonoBehaviour
 			{
 				Debug.LogWarning("Pickup sound not assigned.");
 			}
+			// Make the player sanity increase
+			PlayerController2D playerController = other.GetComponent<PlayerController2D>();
+			if (playerController != null)
+			{
+				playerController.AddSanity(10f); // Increase sanity by 10
+				playerController.onSanityChanged.Invoke(playerController.CurrentSanity);
+			}
+			else
+			{
+				Debug.LogWarning("PlayerController2D component not found on the player object.");
+			}
 			// Destroy the pickup object
 			Destroy(gameObject);
 		}
