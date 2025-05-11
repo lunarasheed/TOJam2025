@@ -887,17 +887,17 @@ PrefabInstance:
     - target: {fileID: 4793354324190774982, guid: dac3361f78488df45afb644321217d66,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02765355
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4793354324190774982, guid: dac3361f78488df45afb644321217d66,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9504913
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4793354324190774982, guid: dac3361f78488df45afb644321217d66,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0073011834
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4793354324190774982, guid: dac3361f78488df45afb644321217d66,
         type: 3}
@@ -934,10 +934,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5448759605608681016, guid: dac3361f78488df45afb644321217d66,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448759605608681016, guid: dac3361f78488df45afb644321217d66,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448759605608681016, guid: dac3361f78488df45afb644321217d66,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8338494666494403103, guid: dac3361f78488df45afb644321217d66,
         type: 3}
-      propertyPath: sanityLossPerMeow
-      value: 15
+      propertyPath: meowParticlePrefab
+      value: 
+      objectReference: {fileID: 8272577834234395644, guid: 0bb67d6b70ca4714e82968fd44f87059,
+        type: 3}
+    - target: {fileID: 8338494666494403103, guid: dac3361f78488df45afb644321217d66,
+        type: 3}
+      propertyPath: maxDistanceToPlayer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

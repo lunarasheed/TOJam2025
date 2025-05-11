@@ -50,8 +50,9 @@ MonoBehaviour:
   minDistanceToPlayer: 1
   maxDistanceToPlayer: 5
   meowInterval: 5
-  sanityLossPerMeow: 5
+  sanityLossPerMeow: 15
   meowSound: {fileID: 2620310435980086094}
+  meowParticlePrefab: {fileID: 0}
 --- !u!82 &2620310435980086094
 AudioSource:
   m_ObjectHideFlags: 0

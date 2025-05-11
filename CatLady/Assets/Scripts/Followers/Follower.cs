@@ -13,6 +13,9 @@ public class Follower : MonoBehaviour
 	[SerializeField] private float sanityLossPerMeow = 5f;
 	[SerializeField] private AudioSource meowSound;
 
+	[Header("Visual Effects")]
+	[SerializeField] private GameObject meowParticlePrefab;
+
 	private Transform playerTransform;
 	private PlayerController2D playerController;
 	private bool isSated = false;
@@ -93,6 +96,25 @@ public class Follower : MonoBehaviour
 			if (meowSound != null)
 			{
 				meowSound.Play();
+			}
+
+			// Spawn particle effect
+			if (meowParticlePrefab != null)
+			{
+				GameObject particleObj = Instantiate(meowParticlePrefab, transform.position, Quaternion.identity);
+				ParticleSystem particles = particleObj.GetComponent<ParticleSystem>();
+				
+				if (particles != null)
+				{
+					// Destroy the particle object after it has finished playing
+					float duration = particles.main.duration;
+					Destroy(particleObj, duration);
+				}
+				else
+				{
+					Debug.LogError("Particle System component not found on meow particle prefab!");
+					Destroy(particleObj);
+				}
 			}
 
 			// Reduce player sanity
