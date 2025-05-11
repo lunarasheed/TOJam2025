@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] private CanvasGroup fadeCanvasGroup;
 
 	[SerializeField] private GameObject pickupPrefab;
-	[SerializeField] private GameObject scoreCanvas;
+	[SerializeField] private TextMeshPro scoreTextMesh;
 
 	private AudioSource audioSource;
 	private PlayerController2D playerInstance;
@@ -120,34 +120,12 @@ public class GameController : MonoBehaviour
 	private void UpdateScoreUI()
 	{
 		// If the ScoreUI object is not assigned, spawn a new CanvasGroup with a Text component
-		if (scoreCanvas == null)
+		if (scoreTextMesh == null)
 		{
-			// Search for an existing Canvas in the scene
-			Canvas canvas = FindAnyObjectByType<Canvas>();
-			if (canvas == null)
-			{
-				Debug.LogError("No Canvas found in the scene!");
-				return;
-			}
-			scoreCanvas = canvas.GetComponentInParent<GameObject>();
-			if (scoreCanvas == null)
-			{
-				Debug.LogError("No GameObject found with a Canvas component!");
-				return;
-			}
-			GameObject textObj = new GameObject("ScoreText");
-			textObj.transform.SetParent(scoreCanvas.transform);
-			TextMeshPro scoreText = textObj.AddComponent<TextMeshPro>();
-			scoreText.fontSize = 24;
-			scoreText.color = Color.white;
-			scoreText.alignment = TextAlignmentOptions.Center;
-			scoreText.text = "Score: " + score;
-			scoreText.font = Resources.Load<TMP_FontAsset>("ZCOOLKuaiLe-Regular SDF");
-			scoreText.fontSharedMaterial = Resources.Load<Material>("ZCOOLKuaiLe-Regular SDF");
-			// move score canvas to the top left corner
-			RectTransform rectTransform = scoreCanvas.GetComponent<RectTransform>();
-			rectTransform.position = new Vector3(10, Screen.height - 10, 0);
+			scoreTextMesh = new GameObject("ScoreText").AddComponent<TextMeshPro>();
 		}
+
+		scoreTextMesh.text = "Score: " + score;
 	}
 
 	private void CheckPlayerSanity(float sanity)
