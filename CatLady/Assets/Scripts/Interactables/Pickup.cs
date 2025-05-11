@@ -10,6 +10,8 @@ public class Pickup : MonoBehaviour
 	[SerializeField] private GameObject floatingTextPrefab;
 	[SerializeField] private float floatSpeed = 1f;
 	[SerializeField] private float fadeSpeed = 1f;
+
+	private bool isPickedUp = false;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
@@ -90,8 +92,10 @@ public class Pickup : MonoBehaviour
 	// On Intersect with the player
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player"))
+		if (other.CompareTag("Player") && !isPickedUp)
 		{
+			isPickedUp = true;
+
 			// Add the item to the player's inventory
 			InventoryManager.Instance.AddItem(this);
 			// Play the pickup sound

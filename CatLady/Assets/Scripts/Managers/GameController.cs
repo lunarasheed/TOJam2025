@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -17,11 +19,13 @@ public class GameController : MonoBehaviour
 	[SerializeField] private CanvasGroup fadeCanvasGroup;
 
 	[SerializeField] private GameObject pickupPrefab;
+	[SerializeField] private CanvasGroup scoreCanvasGroup;
 
 	private AudioSource audioSource;
 	private PlayerController2D playerInstance;
 	private bool isGameOver = false;
 	private bool spawnedPickup = false;
+	private int score = 0;
 
 	private void Start()
 	{
@@ -31,6 +35,8 @@ public class GameController : MonoBehaviour
 	public void Initialize()
 	{
 		isGameOver = false;
+		score = 0;
+		spawnedPickup = false;
 
 		// Instantiate player at spawn point
 		player = Instantiate(player, playerSpawnPoint.position, Quaternion.identity);
@@ -90,6 +96,44 @@ public class GameController : MonoBehaviour
 		}
 
 		Debug.Log("Game initialized");
+	}
+
+	private void Update()
+	{
+		UpdateScore();
+	}
+
+	private void UpdateScore()
+	{
+		if (!isGameOver)
+		{
+			score += (int)(Time.deltaTime * 10);
+		}
+		else
+		{
+			score = 0; // Reset score on game over
+		}
+
+		UpdateScoreUI();
+	}
+
+	private void UpdateScoreUI()
+	{
+		// If the ScoreUI object is not assigned, spawn a new CanvasGroup with a Text component
+		if (scoreCanvasGroup == null)
+		{
+			GameObject scoreUI = new GameObject("ScoreUI");
+			scoreUI.transform.SetParent(transform);
+			scoreCanvasGroup = scoreUI.AddComponent<CanvasGroup>();
+			TextMeshPro scoreText = scoreUI.AddComponent<TextMeshPro>();
+			scoreText.fontSize = 24;
+			scoreText.color = Color.white;
+			scoreText.alignment = TextAlignmentOptions.Center;
+			scoreText.text = "Score: " + score;
+			// move score canvas to the top left corner
+			RectTransform rectTransform = scoreUI.GetComponent<RectTransform>();
+			rectTransform.position = new Vector3(10, Screen.height - 10, 0);
+		}
 	}
 
 	private void CheckPlayerSanity(float sanity)
