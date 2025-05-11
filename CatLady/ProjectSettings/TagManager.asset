@@ -7,6 +7,7 @@ TagManager:
   - TutorialRequirement
   - LevelObject
   - FloorTile
+  - Follower
   layers:
   - Default
   - TransparentFX
