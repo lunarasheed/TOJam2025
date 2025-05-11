@@ -34,7 +34,13 @@ public class Pickup : MonoBehaviour
 
 		// Create the floating text object
 		GameObject floatingTextObj = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
-		TextMeshPro textMesh = floatingTextObj.GetComponentInChildren<TextMeshPro>();
+		if (floatingTextObj == null)
+		{
+			Debug.LogError("Failed to instantiate floating text prefab!");
+			return;
+		}
+
+		TextMeshPro textMesh = floatingTextObj.GetComponent<TextMeshPro>();
 
 		if (textMesh == null)
 		{
