@@ -132,11 +132,42 @@ public class GameController : MonoBehaviour
 		// Load game over scene
 		SceneManager.LoadScene(gameOverSceneName);
 
+		// Destroy all objects in the current scene
+		DestroyAllObjectsInScene();
+		yield return new WaitForSeconds(0.1f);
+
 		// Unload current scene
 		Scene currentScene = SceneManager.GetActiveScene();
 		if (currentScene != null)
 		{
 			yield return SceneManager.UnloadSceneAsync(currentScene);
+		}
+	}
+
+	public void DestroyAllObjectsInScene()
+	{
+		// Destroy player
+		if (player != null)
+		{
+			Destroy(player);
+		}
+		// Destroy all followers
+		GameObject[] followers = GameObject.FindGameObjectsWithTag("Follower");
+		foreach (GameObject follower in followers)
+		{
+			Destroy(follower);
+		}
+		// Destroy all pickups
+		GameObject[] pickups = GameObject.FindGameObjectsWithTag("Pickup");
+		foreach (GameObject pickup in pickups)
+		{
+			Destroy(pickup);
+		}
+		// Destroy all interactables
+		GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
+		foreach (GameObject interactable in interactables)
+		{
+			Destroy(interactable);
 		}
 	}
 

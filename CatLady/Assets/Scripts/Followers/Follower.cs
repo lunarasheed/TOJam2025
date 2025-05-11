@@ -17,8 +17,8 @@ public class Follower : MonoBehaviour
 	[SerializeField] private GameObject meowParticlePrefab;
 
 	[Header("Animation Settings")]
-	[SerializeField] private float bounceHeight = 0.5f;
-	[SerializeField] private float bounceSpeed = 2f;
+	[SerializeField] private float bounceHeight = 0.25f;
+	[SerializeField] private float bounceSpeed = 1f;
 	[SerializeField] private Transform visualsTransform; // Assign the child object with sprite/mesh
 
 	private Transform playerTransform;
@@ -26,7 +26,7 @@ public class Follower : MonoBehaviour
 	private bool isSated = false;
 	private float satedTimeRemaining = 0f;
 	private const float SATED_DURATION = 30f;
-	private float nextMeowTime = 0f;
+	private float nextMeowTime = 5f;
 
 	private Vector3 startPosition;
 	private float bounceTime;
@@ -123,7 +123,7 @@ public class Follower : MonoBehaviour
 			{
 				GameObject particleObj = Instantiate(meowParticlePrefab, transform.position, Quaternion.identity);
 				ParticleSystem particles = particleObj.GetComponent<ParticleSystem>();
-				
+
 				if (particles != null)
 				{
 					// Destroy the particle object after it has finished playing

@@ -1260,12 +1260,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 186231008382838871, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
     - target: {fileID: 584530720138812637, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: floatingTextPrefab
       value: 
       objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
         type: 3}
+    - target: {fileID: 1274938022830927672, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
     - target: {fileID: 2207113296685646678, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: floatingTextPrefab
@@ -1278,12 +1288,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
         type: 3}
+    - target: {fileID: 3881259038705175569, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471448159149505067, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059109788055212511, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
     - target: {fileID: 6829622001572379167, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: floatingTextPrefab
       value: 
       objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
         type: 3}
+    - target: {fileID: 7252912612974871401, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
     - target: {fileID: 7343229092834718226, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: m_Name
@@ -1338,6 +1368,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265160488007997740, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8784530761626387797, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 9078763552363825834, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: FloorTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
