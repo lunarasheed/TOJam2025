@@ -110,6 +110,19 @@ public class GameController : MonoBehaviour
 		{
 			spawnedPickup = false;
 		}
+
+		// if player sanity is below 45, and there are no pickups, spawn a pickup
+		int pickupCount = GameObject.FindGameObjectsWithTag("Pickup").Length;
+		if (sanity <= 45f && pickupCount == 0)
+		{
+			spawnedPickup = true;
+			// Spawn a pickup
+			SpawnPickup();
+		}
+		else if (sanity > 45f && spawnedPickup)
+		{
+			spawnedPickup = false;
+		}
 	}
 
 
