@@ -5,6 +5,7 @@
  */
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController2D : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class PlayerController2D : MonoBehaviour
 	private float lastActionTime;
 	private Animator animator;
 	private float sanity = 100f;
+
+	public float CurrentSanity => sanity;
+	public UnityEvent<float> onSanityChanged = new UnityEvent<float>();
 
 	private void Awake()
 	{
@@ -63,17 +67,18 @@ public class PlayerController2D : MonoBehaviour
 	{
 		sanity -= Time.deltaTime * 0.1f; // Decrease sanity over time
 		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
+		onSanityChanged.Invoke(sanity);
 		return sanity;
 	}
 
-	private float AddSanity(float amount)
+	public float AddSanity(float amount)
 	{
 		sanity += amount; // Increase sanity
 		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
 		return sanity;
 	}
 
-	private float SubtractSanity(float amount)
+	public float SubtractSanity(float amount)
 	{
 		sanity -= amount; // Decrease sanity
 		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
