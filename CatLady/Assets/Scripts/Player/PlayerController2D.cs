@@ -19,6 +19,7 @@ public class PlayerController2D : MonoBehaviour
 	private Vector2 movement;
 	private float lastActionTime;
 	private Animator animator;
+	private float sanity = 100f;
 
 	private void Awake()
 	{
@@ -52,6 +53,31 @@ public class PlayerController2D : MonoBehaviour
 			animator.SetFloat("Vertical", movement.y);
 			animator.SetFloat("Speed", movement.magnitude);
 		}
+
+		// Calculate the sanity of the player
+		float sanity = CalculateSanity();
+		Debug.Log("Sanity: " + sanity);
+	}
+
+	private float CalculateSanity()
+	{
+		sanity -= Time.deltaTime * 0.1f; // Decrease sanity over time
+		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
+		return sanity;
+	}
+
+	private float AddSanity(float amount)
+	{
+		sanity += amount; // Increase sanity
+		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
+		return sanity;
+	}
+
+	private float SubtractSanity(float amount)
+	{
+		sanity -= amount; // Decrease sanity
+		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
+		return sanity;
 	}
 
 	private void FixedUpdate()
@@ -74,9 +100,11 @@ public class PlayerController2D : MonoBehaviour
 		PlayActionAnimation();
 	}
 
-	private void PlayActionAnimation() {
+	private void PlayActionAnimation()
+	{
 		// Play action animation if animator exists
-		if (animator != null) {
+		if (animator != null)
+		{
 			Debug.Log("Action animation triggered!");
 			animator.SetTrigger("Action");
 		}
