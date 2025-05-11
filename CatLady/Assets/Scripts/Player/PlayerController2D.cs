@@ -9,108 +9,128 @@ using UnityEngine.Events;
 
 public class PlayerController2D : MonoBehaviour
 {
-	[Header("Movement Settings")]
-	[SerializeField] private float moveSpeed = 5f;
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 5f;
+    private bool isFacingRight = true;  // Track which direction the player is facing
 
-	[Header("Action Settings")]
-	[SerializeField] private KeyCode actionKey = KeyCode.Space;
-	[SerializeField] private float actionCooldown = 0.5f;
+    [Header("Action Settings")]
+    [SerializeField] private KeyCode actionKey = KeyCode.Space;
+    [SerializeField] private float actionCooldown = 0.5f;
 
-	private Rigidbody2D rb;
-	private Vector2 movement;
-	private float lastActionTime;
-	private Animator animator;
-	private float sanity = 100f;
+    private Rigidbody2D rb;
+    private Vector2 movement;
+    private float lastActionTime;
+    private Animator animator;
+    private float sanity = 100f;
 
-	public float CurrentSanity => sanity;
-	public UnityEvent<float> onSanityChanged = new UnityEvent<float>();
+    public float CurrentSanity => sanity;
+    public UnityEvent<float> onSanityChanged = new UnityEvent<float>();
 
-	private void Awake()
-	{
-		rb = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
-	}
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
 
-	private void Update()
-	{
-		// Get input
-		movement.x = Input.GetAxisRaw("Horizontal");
-		movement.y = Input.GetAxisRaw("Vertical");
+    private void Update()
+    {
+        // Get input
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-		// Normalize movement to prevent faster diagonal movement
-		if (movement.magnitude > 1)
-		{
-			movement.Normalize();
-		}
+        // Normalize movement to prevent faster diagonal movement
+        if (movement.magnitude > 1)
+        {
+            movement.Normalize();
+        }
 
-		// Handle action button press
-		if (Input.GetKeyDown(actionKey) && Time.time > lastActionTime + actionCooldown)
-		{
-			PerformAction();
-			lastActionTime = Time.time;
-		}
+        // Handle action button press
+        if (Input.GetKeyDown(actionKey) && Time.time > lastActionTime + actionCooldown)
+        {
+            PerformAction();
+            lastActionTime = Time.time;
+        }
 
-		// Update animation parameters if animator exists
-		if (animator != null)
-		{
-			animator.SetFloat("Horizontal", movement.x);
-			animator.SetFloat("Vertical", movement.y);
-			animator.SetFloat("Speed", movement.magnitude);
-		}
+        // Flip the character based on movement direction
+        if (movement.x > 0 && !isFacingRight)  // Moving right
+        {
+            Flip();
+        }
+        else if (movement.x < 0 && isFacingRight)  // Moving left
+        {
+            Flip();
+        }
 
-		// Calculate the sanity of the player
-		float sanity = CalculateSanity();
-	}
+        // Update animation parameters if animator exists
+        if (animator != null)
+        {
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.magnitude);
+        }
 
-	private float CalculateSanity()
-	{
-		sanity -= Time.deltaTime * 0.1f; // Decrease sanity over time
-		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
-		onSanityChanged.Invoke(sanity);
-		return sanity;
-	}
+        // Calculate the sanity of the player
+        float sanity = CalculateSanity();
+    }
 
-	public float AddSanity(float amount)
-	{
-		sanity += amount; // Increase sanity
-		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
-		return sanity;
-	}
+    private float CalculateSanity()
+    {
+        sanity -= Time.deltaTime * 0.1f; // Decrease sanity over time
+        sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
+        onSanityChanged.Invoke(sanity);
+        return sanity;
+    }
 
-	public float SubtractSanity(float amount)
-	{
-		sanity -= amount; // Decrease sanity
-		sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
-		return sanity;
-	}
+    public float AddSanity(float amount)
+    {
+        sanity += amount; // Increase sanity
+        sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
+        return sanity;
+    }
 
-	private void FixedUpdate()
-	{
-		// Move the character
-		rb.linearVelocity = movement * moveSpeed;
-	}
+    public float SubtractSanity(float amount)
+    {
+        sanity -= amount; // Decrease sanity
+        sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
+        return sanity;
+    }
 
-	private void PerformAction()
-	{
-		// Play action animation if animator exists
-		if (animator != null)
-		{
-			animator.SetTrigger("Action");
-		}
+    private void FixedUpdate()
+    {
+        // Move the character
+        rb.linearVelocity = movement * moveSpeed;  // Fixed to set velocity for smoother movement
+    }
 
-		// Add action logic here
-		Debug.Log("Action performed!");
-		// Play action animation
-		PlayActionAnimation();
-	}
+    private void PerformAction()
+    {
+        // Play action animation if animator exists
+        if (animator != null)
+        {
+            animator.SetTrigger("Action");
+        }
 
-	private void PlayActionAnimation()
-	{
-		// Play action animation if animator exists
-		if (animator != null)
-		{
-			Debug.Log("Action animation triggered!");
-			animator.SetTrigger("Action");
-		}
-	}
+        // Add action logic here
+        Debug.Log("Action performed!");
+        // Play action animation
+        PlayActionAnimation();
+    }
+
+    private void PlayActionAnimation()
+    {
+        // Play action animation if animator exists
+        if (animator != null)
+        {
+            Debug.Log("Action animation triggered!");
+            animator.SetTrigger("Action");
+        }
+    }
+
+    private void Flip()
+    {
+        // Flip the player sprite by changing the local scale on the x-axis
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;  // Flip the sprite horizontally
+        transform.localScale = localScale;
+    }
 }
