@@ -11,7 +11,6 @@ public class PlayerController2D : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    private bool isFacingRight = true;  // Track which direction the player is facing
 
     [Header("Action Settings")]
     [SerializeField] private KeyCode actionKey = KeyCode.Space;
@@ -51,16 +50,6 @@ public class PlayerController2D : MonoBehaviour
             lastActionTime = Time.time;
         }
 
-        // Flip the character based on movement direction
-        if (movement.x > 0 && !isFacingRight)  // Moving right
-        {
-            Flip();
-        }
-        else if (movement.x < 0 && isFacingRight)  // Moving left
-        {
-            Flip();
-        }
-
         // Update animation parameters if animator exists
         if (animator != null)
         {
@@ -94,22 +83,17 @@ public class PlayerController2D : MonoBehaviour
         sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
         return sanity;
     }
-	public void ResetSanity()
-	{
-		sanity = 100f; // Reset sanity to 100
-		onSanityChanged.Invoke(sanity);
-	}
 
-	private void FixedUpdate()
-	{
-		// Move the character
-		rb.linearVelocity = movement * moveSpeed;
-	}
+    public void ResetSanity()
+    {
+        sanity = 100f; // Reset sanity to 100
+        onSanityChanged.Invoke(sanity);
+    }
 
     private void FixedUpdate()
     {
         // Move the character
-        rb.linearVelocity = movement * moveSpeed;  // Fixed to set velocity for smoother movement
+        rb.linearVelocity = movement * moveSpeed;
     }
 
     private void PerformAction()
@@ -134,14 +118,5 @@ public class PlayerController2D : MonoBehaviour
             Debug.Log("Action animation triggered!");
             animator.SetTrigger("Action");
         }
-    }
-
-    private void Flip()
-    {
-        // Flip the player sprite by changing the local scale on the x-axis
-        isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1;  // Flip the sprite horizontally
-        transform.localScale = localScale;
     }
 }
