@@ -60,9 +60,6 @@ public class Pickup : MonoBehaviour
 		float alpha = 1f;
 		Vector3 startPos = textObj.transform.position;
 
-		// Destroy the pickup object
-		Destroy(gameObject);
-
 		while (alpha > 0f)
 		{
 			// Move upward
@@ -84,6 +81,8 @@ public class Pickup : MonoBehaviour
 			yield return null;
 		}
 
+		// Destroy the pickup object
+		Destroy(gameObject);
 		// Destroy the floating text object
 		Destroy(textObj);
 	}
@@ -111,6 +110,15 @@ public class Pickup : MonoBehaviour
 				playerController.AddSanity(10f); // Increase sanity by 10
 				playerController.onSanityChanged.Invoke(playerController.CurrentSanity);
 				SpawnFloatingText(); // Add this line here
+				Renderer renderer = GetComponent<Renderer>();
+				if (renderer != null)
+				{
+					renderer.enabled = false; // Hide the pickup object
+				}
+				else
+				{
+					Debug.LogWarning("Renderer component not found on the pickup object.");
+				}
 			}
 			else
 			{
