@@ -106,6 +106,7 @@
     <Compile Include="Assets\Mod Assets\Mod Resources\Scripts\Platformer\PlatformerJumpPad.cs" />
     <Compile Include="Assets\Scripts\Core\HeapQueue.cs" />
     <Compile Include="Assets\Scripts\Mechanics\SpawnPoint.cs" />
+    <Compile Include="Assets\Scripts\Followers\Follower.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerStopJump.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
