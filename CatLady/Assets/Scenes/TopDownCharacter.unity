@@ -877,7 +877,7 @@ RectTransform:
   m_GameObject: {fileID: 1904019923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 14.336, y: 14.336, z: 14.336}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 512607505}
@@ -1321,6 +1321,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 7440186044007550066, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7483867373694624090, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1371,6 +1376,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7794467786887910290, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8265160488007997740, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: m_TagString
@@ -1380,6 +1390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: FloorTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054142051131196966, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 9078763552363825834, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
