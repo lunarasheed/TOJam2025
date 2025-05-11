@@ -974,6 +974,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 584530720138812637, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: floatingTextPrefab
+      value: 
+      objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
+        type: 3}
+    - target: {fileID: 2207113296685646678, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: floatingTextPrefab
+      value: 
+      objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
+        type: 3}
+    - target: {fileID: 2354082564470631414, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: floatingTextPrefab
+      value: 
+      objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
+        type: 3}
+    - target: {fileID: 6829622001572379167, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: floatingTextPrefab
+      value: 
+      objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
+        type: 3}
     - target: {fileID: 7343229092834718226, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: m_Name

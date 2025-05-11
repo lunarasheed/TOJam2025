@@ -239,6 +239,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8390356369622650502}
+  floatingTextPrefab: {fileID: 8879885288625325156, guid: e8803759adb0c814abe069a407d77e51,
+    type: 3}
+  floatSpeed: 1
+  fadeSpeed: 1
 --- !u!82 &8390356369622650502
 AudioSource:
   m_ObjectHideFlags: 0

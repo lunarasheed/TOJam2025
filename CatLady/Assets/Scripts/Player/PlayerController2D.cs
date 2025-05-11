@@ -60,7 +60,6 @@ public class PlayerController2D : MonoBehaviour
 
 		// Calculate the sanity of the player
 		float sanity = CalculateSanity();
-		Debug.Log("Sanity: " + sanity);
 	}
 
 	private float CalculateSanity()
