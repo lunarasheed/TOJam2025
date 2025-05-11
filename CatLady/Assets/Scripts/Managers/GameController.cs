@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 	private AudioSource audioSource;
 	private PlayerController2D playerInstance;
 	private bool isGameOver = false;
+	private bool spawnedPickup = false;
 
 	private void Start()
 	{
@@ -99,12 +100,19 @@ public class GameController : MonoBehaviour
 		}
 
 		// if the player sanity is low, spawn a pickup
-		if (sanity <= 20f)
+		if (sanity <= 20f && !spawnedPickup)
 		{
+			spawnedPickup = true;
+			// Spawn a pickup
 			SpawnPickup();
 		}
+		else if (sanity > 20f && spawnedPickup)
+		{
+			spawnedPickup = false;
+		}
 	}
-	
+
+
 	public void SpawnPickup()
 	{
 		if (pickupPrefab != null && player != null)
@@ -120,7 +128,7 @@ public class GameController : MonoBehaviour
 			int randomIndex = Random.Range(0, floorTiles.Length);
 			GameObject randomFloorTile = floorTiles[randomIndex];
 			Vector3 spawnPosition = randomFloorTile.transform.position;
-			
+
 			// Instantiate the pickup prefab at the spawn position
 			GameObject pickup = Instantiate(pickupPrefab, spawnPosition, Quaternion.identity);
 			if (pickup == null)
