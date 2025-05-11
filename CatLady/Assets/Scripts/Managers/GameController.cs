@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
 	[SerializeField] private Transform followerSpawnPoint;
 	[SerializeField] private CanvasGroup fadeCanvasGroup;
 
+	[SerializeField] private GameObject pickupPrefab;
+
 	private AudioSource audioSource;
 	private PlayerController2D playerInstance;
 	private bool isGameOver = false;
@@ -95,8 +97,43 @@ public class GameController : MonoBehaviour
 		{
 			StartCoroutine(HandleGameOver());
 		}
-	}
 
+		// if the player sanity is low, spawn a pickup
+		if (sanity <= 20f)
+		{
+			SpawnPickup();
+		}
+	}
+	
+	public void SpawnPickup()
+	{
+		if (pickupPrefab != null && player != null)
+		{
+			// Get a list of nearby floor tiles
+			GameObject[] floorTiles = GameObject.FindGameObjectsWithTag("FloorTile");
+			if (floorTiles.Length == 0)
+			{
+				Debug.LogError("No floor tiles found in the scene!");
+				return;
+			}
+			// Randomly select a floor tile
+			int randomIndex = Random.Range(0, floorTiles.Length);
+			GameObject randomFloorTile = floorTiles[randomIndex];
+			Vector3 spawnPosition = randomFloorTile.transform.position;
+			
+			// Instantiate the pickup prefab at the spawn position
+			GameObject pickup = Instantiate(pickupPrefab, spawnPosition, Quaternion.identity);
+			if (pickup == null)
+			{
+				Debug.LogError("Pickup prefab is not assigned!");
+				return;
+			}
+		}
+		else
+		{
+			Debug.LogError("Pickup prefab or player is not assigned!");
+		}
+	}
 	private IEnumerator HandleGameOver()
 	{
 		isGameOver = true;
