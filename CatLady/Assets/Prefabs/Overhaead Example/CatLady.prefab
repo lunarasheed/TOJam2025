@@ -54,6 +54,9 @@ MonoBehaviour:
   moveSpeed: 5
   actionKey: 32
   actionCooldown: 0.5
+  onSanityChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1402498772819671442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,14 +78,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029204744135633763}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -153,6 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxInventorySize: 999
+  onItemPickedUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3667079311056791709
 GameObject:
   m_ObjectHideFlags: 0

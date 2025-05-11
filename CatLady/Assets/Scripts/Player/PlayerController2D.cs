@@ -94,6 +94,17 @@ public class PlayerController2D : MonoBehaviour
         sanity = Mathf.Clamp(sanity, 0f, 100f); // Clamp sanity between 0 and 100
         return sanity;
     }
+	public void ResetSanity()
+	{
+		sanity = 100f; // Reset sanity to 100
+		onSanityChanged.Invoke(sanity);
+	}
+
+	private void FixedUpdate()
+	{
+		// Move the character
+		rb.linearVelocity = movement * moveSpeed;
+	}
 
     private void FixedUpdate()
     {
