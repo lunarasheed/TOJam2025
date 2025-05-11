@@ -60,6 +60,9 @@ public class Pickup : MonoBehaviour
 		float alpha = 1f;
 		Vector3 startPos = textObj.transform.position;
 
+		// Destroy the pickup object
+		Destroy(gameObject);
+
 		while (alpha > 0f)
 		{
 			// Move upward
@@ -81,8 +84,6 @@ public class Pickup : MonoBehaviour
 			yield return null;
 		}
 
-		// Destroy the pickup object
-		Destroy(gameObject);
 		// Destroy the floating text object
 		Destroy(textObj);
 	}
