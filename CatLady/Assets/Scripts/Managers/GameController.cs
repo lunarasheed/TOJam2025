@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
 	[SerializeField] private CanvasGroup fadeCanvasGroup;
 
 	[SerializeField] private GameObject pickupPrefab;
-	[SerializeField] private TextMeshPro scoreTextMesh;
+	[SerializeField] private GameObject scoreTextMesh;
 
 	private AudioSource audioSource;
 	private PlayerController2D playerInstance;
@@ -105,33 +105,31 @@ public class GameController : MonoBehaviour
 
 	private void UpdateScore()
 	{
-		if (!isGameOver)
-		{
-			score += (int)(Time.deltaTime * 10);
-		}
-		else
-		{
-			score = 0; // Reset score on game over
-		}
-
+		score += (int)(Time.deltaTime * 10);
 		UpdateScoreUI();
 	}
 
 	private void UpdateScoreUI()
 	{
-		// If the ScoreUI object is not assigned, spawn a new CanvasGroup with a Text component
 		if (scoreTextMesh == null)
 		{
-			scoreTextMesh = new GameObject("ScoreText").AddComponent<TextMeshPro>();
+			Debug.LogError("Score TextMesh is not assigned!");
+			return;
 		}
 
-		scoreTextMesh.text = "Score: " + score;
+		// Find the TextMeshPro component
+		TextMeshProUGUI textMesh = scoreTextMesh.GetComponent<TextMeshProUGUI>();
+		if (textMesh == null)
+		{
+			Debug.LogError("TextMeshProUGUI component not found on score text object!");
+			return;
+		}
+		// Update the score text
+		textMesh.text = "Score: " + score.ToString();
 	}
 
 	private void CheckPlayerSanity(float sanity)
 	{
-		UpdateScore();
-
 		if (sanity <= 0f && !isGameOver)
 		{
 			StartCoroutine(HandleGameOver());
@@ -265,6 +263,8 @@ public class GameController : MonoBehaviour
 		{
 			Destroy(interactable);
 		}
+		score = 0;
+		spawnedPickup = false;
 	}
 
 	private void OnDestroy()
@@ -273,5 +273,7 @@ public class GameController : MonoBehaviour
 		{
 			playerInstance.onSanityChanged.RemoveListener(CheckPlayerSanity);
 		}
+		score = 0;
+		spawnedPickup = false;
 	}
 }
