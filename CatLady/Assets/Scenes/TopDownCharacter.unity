@@ -618,6 +618,8 @@ MonoBehaviour:
   followerSpawnPoint: {fileID: 6646986822971708221, guid: f8ed22f07e47970488d39cec94b62c3e,
     type: 3}
   fadeCanvasGroup: {fileID: 512607506}
+  pickupPrefab: {fileID: 6930383946589502332, guid: 47ad7c38917fc8d479f0280a42ad02be,
+    type: 3}
 --- !u!4 &909135702
 Transform:
   m_ObjectHideFlags: 0
