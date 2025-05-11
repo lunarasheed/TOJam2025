@@ -128,6 +128,15 @@ public class Pickup : MonoBehaviour
 			{
 				Debug.LogWarning("PlayerController2D component not found on the player object.");
 			}
+
+			// Get a reference to the game controller
+			GameController gameController = FindAnyObjectByType<GameController>();
+			if (!gameController)
+			{
+				Debug.LogWarning("GameController not found in the scene.");
+			}
+			// Add to the score
+			gameController.AddToScore(10); // Increase score by 1
 		}
 		else
 		{

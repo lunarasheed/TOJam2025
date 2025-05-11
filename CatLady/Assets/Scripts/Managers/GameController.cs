@@ -103,9 +103,30 @@ public class GameController : MonoBehaviour
 		UpdateScore();
 	}
 
+	public int AddToScore(int amount)
+	{
+		score += amount;
+		UpdateScoreUI();
+		return score;
+	}
+	public int SubtractFromScore(int amount)
+	{
+		score -= amount;
+		UpdateScoreUI();
+		return score;
+	}
+	public int GetScore()
+	{
+		return score;
+	}
+
 	private void UpdateScore()
 	{
-		score += (int)(Time.deltaTime * 10);
+		// if 10 seconds have passed, add 1 to the score
+		if (Time.time % 10 < 0.1f)
+		{
+			score += 1;
+		}
 		UpdateScoreUI();
 	}
 

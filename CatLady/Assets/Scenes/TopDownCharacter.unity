@@ -876,8 +876,8 @@ MonoBehaviour:
   m_fontSizeMin: 14
   m_fontSizeMax: 24
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1418,6 +1418,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: FloorTile
       objectReference: {fileID: 0}
+    - target: {fileID: 1845992741903174792, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845992741903174792, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2207113296685646678, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: floatingTextPrefab
@@ -1430,6 +1440,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2715986585999394594, guid: e8803759adb0c814abe069a407d77e51,
         type: 3}
+    - target: {fileID: 3542506167929256867, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3881259038705175569, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
       propertyPath: m_TagString
@@ -1515,6 +1530,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490216283918114145, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490216283918114145, guid: 9eb75b6d68078f1429d960631eb6a8f4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7794467786887910290, guid: 9eb75b6d68078f1429d960631eb6a8f4,
         type: 3}
