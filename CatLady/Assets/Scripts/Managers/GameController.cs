@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
 	private PlayerController2D playerInstance;
 	private bool isGameOver = false;
 	private bool spawnedPickup = false;
+	private bool spawnedFollower = false;
 	private int score = 0;
 
 	private void Start()
@@ -180,6 +181,29 @@ public class GameController : MonoBehaviour
 		{
 			spawnedPickup = false;
 		}
+
+		// If sanity is above 80, spawn another follower
+		if (sanity > 80f && !spawnedFollower)
+		{
+			spawnedFollower = true;
+			// Spawn a follower
+			if (followerPrefab != null && followerSpawnPoint != null)
+			{
+				GameObject follower = Instantiate(followerPrefab, followerSpawnPoint.position, Quaternion.identity);
+				if (follower == null)
+				{
+					Debug.LogError("Follower prefab is not assigned!");
+				}
+			}
+			else
+			{
+				Debug.LogError("Follower prefab or spawn point is not assigned!");
+			}
+		}
+		else if (sanity <= 80f && spawnedFollower)
+		{
+			spawnedFollower = false;
+		}
 	}
 
 
@@ -286,6 +310,9 @@ public class GameController : MonoBehaviour
 		}
 		score = 0;
 		spawnedPickup = false;
+		spawnedFollower = false;
+		isGameOver = false;
+		Debug.Log("All objects destroyed in scene");
 	}
 
 	private void OnDestroy()
@@ -296,5 +323,7 @@ public class GameController : MonoBehaviour
 		}
 		score = 0;
 		spawnedPickup = false;
+		spawnedFollower = false;
+		isGameOver = false;
 	}
 }
