@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   minDistanceToPlayer: 1
-  maxDistanceToPlayer: 2
+  maxDistanceToPlayer: 10
   meowInterval: 5
   sanityLossPerMeow: 15
   meowSound: {fileID: 2620310435980086094}

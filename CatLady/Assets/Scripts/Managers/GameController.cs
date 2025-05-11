@@ -10,30 +10,83 @@ public class GameController : MonoBehaviour
 	[SerializeField] private AudioClip gameOverSound;
 
 	[Header("References")]
-	[SerializeField] private PlayerController2D player;
+	[SerializeField] private GameObject player;
+	[SerializeField] private Transform playerSpawnPoint;
+	[SerializeField] private GameObject followerPrefab;
+	[SerializeField] private Transform followerSpawnPoint;
 	[SerializeField] private CanvasGroup fadeCanvasGroup;
 
 	private AudioSource audioSource;
+	private PlayerController2D playerInstance;
 	private bool isGameOver = false;
 
 	private void Start()
 	{
-		// Find player if not assigned
+		Initialize();
+	}
+
+	public void Initialize()
+	{
+		isGameOver = false;
+
+		// Instantiate player at spawn point
+		player = Instantiate(player, playerSpawnPoint.position, Quaternion.identity);
 		if (player == null)
 		{
-			player = FindAnyObjectByType<PlayerController2D>();
-			if (player == null)
-			{
-				Debug.LogError("No PlayerController2D found in scene!");
-				return;
-			}
+			Debug.LogError("Player prefab is not assigned!");
+			return;
 		}
 
-		// Listen for sanity changes
-		player.onSanityChanged.AddListener(CheckPlayerSanity);
+		playerInstance = player.GetComponent<PlayerController2D>();
+		if (playerInstance == null)
+		{
+			Debug.LogError("PlayerController2D component not found on player prefab!");
+			return;
+		}
+
+		// Reset player state
+		if (player != null)
+		{
+			playerInstance.enabled = true;
+			playerInstance.ResetSanity();
+		}
+
+		// Instantiate follower at spawn point
+		if (followerPrefab != null && followerSpawnPoint != null)
+		{
+			GameObject follower = Instantiate(followerPrefab, followerSpawnPoint.position, Quaternion.identity);
+			if (follower == null)
+			{
+				Debug.LogError("Follower prefab is not assigned!");
+			}
+		}
+		else
+		{
+			Debug.LogError("Follower prefab or spawn point is not assigned!");
+		}
+
+		// Reset fade canvas
+		if (fadeCanvasGroup != null)
+		{
+			fadeCanvasGroup.alpha = 0f;
+		}
+
+		// Reset inventory
+		if (InventoryManager.Instance != null)
+		{
+			InventoryManager.Instance.ClearInventory();
+		}
+
+		// Setup event listeners
+		playerInstance.onSanityChanged.AddListener(CheckPlayerSanity);
 
 		// Setup audio
-		audioSource = gameObject.AddComponent<AudioSource>();
+		if (audioSource == null)
+		{
+			audioSource = gameObject.AddComponent<AudioSource>();
+		}
+
+		Debug.Log("Game initialized");
 	}
 
 	private void CheckPlayerSanity(float sanity)
@@ -57,7 +110,7 @@ public class GameController : MonoBehaviour
 		// Freeze player movement
 		if (player != null)
 		{
-			player.enabled = false;
+			playerInstance.enabled = false;
 		}
 
 		// Fade to black
@@ -78,13 +131,20 @@ public class GameController : MonoBehaviour
 
 		// Load game over scene
 		SceneManager.LoadScene(gameOverSceneName);
+
+		// Unload current scene
+		Scene currentScene = SceneManager.GetActiveScene();
+		if (currentScene != null)
+		{
+			yield return SceneManager.UnloadSceneAsync(currentScene);
+		}
 	}
 
 	private void OnDestroy()
 	{
 		if (player != null)
 		{
-			player.onSanityChanged.RemoveListener(CheckPlayerSanity);
+			playerInstance.onSanityChanged.RemoveListener(CheckPlayerSanity);
 		}
 	}
 }

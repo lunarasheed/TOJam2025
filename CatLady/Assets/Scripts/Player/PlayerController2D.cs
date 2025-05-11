@@ -84,6 +84,12 @@ public class PlayerController2D : MonoBehaviour
 		return sanity;
 	}
 
+	public void ResetSanity()
+	{
+		sanity = 100f; // Reset sanity to 100
+		onSanityChanged.Invoke(sanity);
+	}
+
 	private void FixedUpdate()
 	{
 		// Move the character
