@@ -185,6 +185,8 @@ public class GameController : MonoBehaviour
 		// If sanity is above 80, spawn another follower
 		if (sanity > 80f && !spawnedFollower)
 		{
+			spawnedFollower = true;
+			// Spawn a follower
 			if (followerPrefab != null && followerSpawnPoint != null)
 			{
 				GameObject follower = Instantiate(followerPrefab, followerSpawnPoint.position, Quaternion.identity);
@@ -192,15 +194,16 @@ public class GameController : MonoBehaviour
 				{
 					Debug.LogError("Follower prefab is not assigned!");
 				}
-				spawnedFollower = true;
 			}
 			else
 			{
 				Debug.LogError("Follower prefab or spawn point is not assigned!");
 			}
-			return;
 		}
-		spawnedFollower = false;
+		else if (sanity <= 80f && spawnedFollower)
+		{
+			spawnedFollower = false;
+		}
 	}
 
 
