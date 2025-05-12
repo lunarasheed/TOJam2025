@@ -25,7 +25,7 @@ public class Follower : MonoBehaviour
 	private PlayerController2D playerController;
 	private bool isSated = false;
 	private float satedTimeRemaining = 0f;
-	private const float SATED_DURATION = 120f;
+	private const float SATED_DURATION = 30f;
 	private float nextMeowTime = 5f;
 
 	private Vector3 startPosition;
